@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamaa.io - Bedtime Made Easy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #4527a0, #311b92);
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .logo span {
+            color: #e0c3fc;
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #e0c3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-img {
+            width: 400px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .moon {
+            width: 100px;
+            height: 100px;
+            background-color: #fff8e1;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 248, 225, 0.8);
+            position: absolute;
+            top: 40px;
+            right: 70px;
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .waitlist-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .waitlist-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .checkbox-group {
+            margin-top: 0.5rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        button {
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #ff5252, #ff7676);
+        }
+        
+        .features {
+            margin-top: 5rem;
+        }
+        
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: #e0c3fc;
+        }
+        
+        .feature-card ul {
+            list-style-type: none;
+            margin-left: 0.5rem;
+        }
+        
+        .feature-card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .feature-card li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+        
+        .cta-banner {
+            background: linear-gradient(to right, rgba(255, 107, 107, 0.8), rgba(255, 142, 142, 0.8));
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-banner p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #ff6b6b;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .counter {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .counter span {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .limited-spots {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .step-instructions {
+            margin-top: 6rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+        
+        .step-instructions h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: #ff6b6b;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+            color: #e0c3fc;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-family: monospace;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+        
+        .success-message {
+            display: none;
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid #2ecc71;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-img {
+                width: 300px;
+                height: 220px;
+            }
+            
+            .moon {
+                width: 70px;
+                height: 70px;
+                top: 30px;
+                right: 50px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">mamaa<span>.io</span></div>
+        </header>
+        
+        <section class="hero">
+            <h1>Transform Bedtime Struggles Into Sweet Dreams</h1>
+            <p>Join 500+ parents who've discovered the secret to peaceful bedtimes with AI-powered stories, smart routines, and personalized sleep solutions.</p>
+            
+            <div class="hero-img">
+                <div class="moon"></div>
+                <div class="stars">
+                    <!-- Stars will be added with JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-banner">
+            <h2>Early Access Coming Soon!</h2>
+            <p>The first 100 parents on our waitlist will receive 3 months of mamaa.io Premium absolutely FREE when we launch.</p>
+            <a href="#waitlist-form" class="cta-button">SECURE YOUR SPOT NOW</a>
+            <div class="limited-spots">Only 37 spots remaining!</div>
+            <div class="counter">Join <span>463</span> parents already on the waitlist</div>
+        </section>
+        
+        <section class="waitlist-form" id="waitlist-form">
+            <h2>Join Our Priority Waitlist</h2>
+            <form id="waitlist-form" action="https://formspree.io/f/mnnpqopj" method="POST">
+                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Full Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="children">Number of Children</label>
+                    <select id="children" name="children" required>
+                        <option value="" disabled selected>Select...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4+">4 or more</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age-range">Children's Age Range</label>
+                    <select id="age-range" name="age_range" required>
+                        <option value="" disabled selected>Select...</option>
+                        <option value="0-2">0-2 years</option>
+                        <option value="3-5">3-5 years</option>
+                        <option value="6-8">6-8 years</option>
+                        <option value="9-12">9-12 years</option>
+                        <option value="mixed">Mixed ages</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>What are your biggest bedtime challenges? (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge1" name="challenges" value="resistance">
+                            <label for="challenge1">Bedtime resistance/stalling</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge2" name="challenges" value="consistency">
+                            <label for="challenge2">Maintaining a consistent bedtime routine</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge3" name="challenges" value="screens">
+                            <label for="challenge3">Screen time battles before bed</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge4" name="challenges" value="waking">
+                            <label for="challenge4">Frequent night wakings</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge5" name="challenges" value="sibling">
+                            <label for="challenge5">Managing different bedtimes for siblings</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge6" name="challenges" value="storytelling">
+                            <label for="challenge6">Running out of bedtime story ideas</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pain-point">What's your #1 bedtime frustration right now?</label>
+                    <textarea id="pain-point" name="pain_point" placeholder="Tell us about your biggest bedtime challenge..."></textarea>
+                </div>
+                
+                <button type="submit">GET EARLY ACCESS</button>
+                <div class="success-message" id="success-message">
+                    Thank you for joining the mamaa.io waitlist! We'll notify you as soon as we launch.
+                </div>
+            </form>
+        </section>
+        
+        <section class="features">
+            <h2>The Bedtime Revolution Is Coming</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📖✨</div>
+                    <h3>AI-Powered Personalized Bedtime Stories</h3>
+                    <ul>
+                        <li>Custom stories with your child's name and favorite themes</li>
+                        <li>Choose calming or educational story themes</li>
+                        <li>Stories adapt based on your child's preferences</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌙😴</div>
+                    <h3>Smart Sleep Schedule & Routine Manager</h3>
+                    <ul>
+                        <li>AI-generated ideal sleep schedules based on age</li>
+                        <li>Personalized bedtime routine suggestions</li>
+                        <li>Smart reminders and schedule adjustments</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎮⭐</div>
+                    <h3>Gamified Task System ("Parenting XP")</h3>
+                    <ul>
+                        <li>Kids earn XP for completing tasks and chores</li>
+                        <li>AI suggests daily positive activities</li>
+                        <li>Unlock special bedtime stories as rewards</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤱🧠</div>
+                    <h3>AI Parenting Coach</h3>
+                    <ul>
+                        <li>Evidence-based tips for sleep, discipline and more</li>
+                        <li>Strategies to reduce bedtime resistance</li>
+                        <li>Help with sibling conflicts and other challenges</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- <section class="step-instructions">
+            <h2>How to Set Up Your Free Waitlist Collection</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Create a free Formspree account</h3>
+                    <p>Sign up at <a href="https://formspree.io" target="_blank">formspree.io</a> and create a new form. They offer a free tier with up to 50 submissions per month.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Update the form action in the HTML</h3>
+                    <p>Replace <code>yourformid</code> in the form action attribute with your Formspree form ID:</p>
+                    <code>action="https://formspree.io/f/mnnpqopj"</code>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Connect Formspree to Mailchimp</h3>
+                    <p>In your Formspree dashboard:</p>
+                    <ol>
+                        <li>Go to your form's "Integrations" tab</li>
+                        <li>Click "Add Integration" and select "Mailchimp"</li>
+                        <li>Connect your Mailchimp account and select the list/audience you want to add subscribers to</li>
+                        <li>Map form fields to Mailchimp fields (email to EMAIL, name to FNAME, etc.)</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Alternative: Use Mailchimp's embedded form</h3>
+                    <p>You can also use Mailchimp's form directly:</p>
+                    <ol>
+                        <li>In Mailchimp, go to "Audience" → "Signup forms" → "Embedded forms"</li>
+                        <li>Customize your form fields to match the ones in this template</li>
+                        <li>Copy the generated HTML code</li>
+                        <li>Replace the form section in this HTML with Mailchimp's code</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+         -->
+        <footer>
+            <p>© 2025 mamaa.io. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Create stars
+        const starsContainer = document.querySelector('.stars');
+        for (let i = 0; i < 30; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+        
+        // Form submission
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            // In this example, we don't prevent default because we want the form to submit to Formspree
+            // If you're using client-side submission, you would uncomment the line below
+            // e.preventDefault();
+            
+            // Show success message
+            document.getElementById('success-message').style.display = 'block';
+            
+            // In a real implementation with client-side submission, you would send this data to your server or service
+            // For now, we'll just log it
+            console.log("Form submitted");
+        });
+        
+        // Scroll to form when CTA button is clicked
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#waitlist-form').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+    </script>
+</body>
+</html>
